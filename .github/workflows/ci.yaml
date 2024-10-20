@@ -27,11 +27,6 @@ jobs:
           curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.53.2
           golangci-lint run
 
-      - name: Run Tests
-        run: go test ./... -v
-
-      - name: Build Application
-        run: CGO_ENABLED=0 GOOS=linux go build -o /go-web-app
 
   Test_app: 
       name: Test Go Application
