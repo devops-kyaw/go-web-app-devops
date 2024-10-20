@@ -60,6 +60,17 @@ jobs:
       - name: Run Tests
         run: go test ./... -v
 
+  Sonar_scan:
+    name: Scan Go Application
+    runs-on: ubuntu-latest
+    needs: Test_app
+
+    steps:
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@v3.1.0
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   Build_app:
     name: Build Go Application
     runs-on: ubuntu-latest
