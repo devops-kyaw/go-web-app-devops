@@ -42,14 +42,13 @@ jobs:
           go-version: 1.22.5
 
       - name: Cache Go modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
-          path: |
-            ~/go/pkg/mod
-            ./.cache
+          path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
+
 
       - name: Install dependencies
         run: go mod download
@@ -73,14 +72,13 @@ jobs:
           go-version: 1.22.5
 
       - name: Cache Go modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
-          path: |
-            ~/go/pkg/mod
-            ./.cache
+          path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
+
 
       - name: Install dependencies
         run: go mod download
@@ -115,4 +113,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: $secrets.DOCKERHUB_TOKEN/go-web-app:${{ github.head_ref }}.${{ github.sha }}
+          tags: testing/go-web-app:${{ github.head_ref }}.${{ github.sha }}
