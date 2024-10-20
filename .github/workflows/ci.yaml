@@ -86,4 +86,5 @@ jobs:
         run: go mod download
 
       - name: Build Application
-        run: CGO_ENABLED=0 GOOS=linux go build -o /go-web-app
+        run: go build
+
