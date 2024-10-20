@@ -70,7 +70,11 @@ jobs:
       uses: sonarsource/sonarcloud-github-action@v3.1.0
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
+      with:
+       args: >
+         -Dsonar.organization=devops-projectslabs
+         -Dsonar.projectKey=devops-projectslabs_go-web-app
+         
   Build_app:
     name: Build Go Application
     runs-on: ubuntu-latest
