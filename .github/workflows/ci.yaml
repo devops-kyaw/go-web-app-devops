@@ -115,4 +115,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: testingkyaw/go-web-app:latest
+          tags: $secrets.DOCKERHUB_TOKEN/go-web-app:${{ github.head_ref }}.${{ github.sha }}
