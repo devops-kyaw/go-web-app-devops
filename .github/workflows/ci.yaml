@@ -86,5 +86,7 @@ jobs:
         run: go mod download
 
       - name: Build Application
-        run: go build
+        run: |
+          go build
+          ls -l
 
