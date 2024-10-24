@@ -153,7 +153,7 @@ jobs:
           docker build -t 403922132857.dkr.ecr.us-east-1.amazonaws.com/go-web-app:${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@0.27.0
         with:
           image-ref: '403922132857.dkr.ecr.us-east-1.amazonaws.com/go-web-app:${{ github.sha }}'
           format: 'table'
