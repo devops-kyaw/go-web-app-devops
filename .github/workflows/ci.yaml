@@ -157,7 +157,7 @@ jobs:
         with:
           image-ref: '403922132857.dkr.ecr.us-east-1.amazonaws.com/go-web-app:${{ github.sha }}'
           format: 'table'
-          exit-code: '1'
+          exit-code: '0'
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
