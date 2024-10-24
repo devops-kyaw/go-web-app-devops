@@ -149,7 +149,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4 
         with:
           role-to-assume: arn:aws:iam::403922132857:role/my-github-actions-role
-          aws-region: us-east-1
+          aws-region: "us-east-1"
 
       - name: Build and push
         uses: docker/build-push-action@v6
