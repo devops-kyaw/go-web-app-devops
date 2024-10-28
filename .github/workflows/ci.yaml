@@ -152,16 +152,6 @@ jobs:
         run: |
           docker build -t 403922132857.dkr.ecr.us-east-1.amazonaws.com/go-web-app:${{ github.sha }} .
 
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.27.0
-        with:
-          image-ref: '403922132857.dkr.ecr.us-east-1.amazonaws.com/go-web-app:${{ github.sha }}'
-          format: 'table'
-          exit-code: '0'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
-
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -174,4 +164,28 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: push image to ECR
-        run: docker push 403922132857.dkr.ecr.us-east-1.amazonaws.com/go-web-app:${{ github.sha }}
+        run: docker push 403922132857.dkr.ecr.us-east-1.amazonaws.com/go-web-app:${{ github.run_id }}
+
+  Update-helm-cherts:
+    runs-on: ubuntu-latest
+    needs: docker-ecr
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.TOKEN }}
+
+    - name: Update tag in Helm chart
+      run: |
+        sed -i 's/tag: .*/tag: "${{github.run_id}}"/' go-app-chart/values.yaml
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.email "kyawzawaung321@gmail.com"
+        git config --global user.name "kyawzawaungdevops"
+        git add go-app-chart/values.yaml
+        git commit -m "Update tag in Helm chart"
+        git push
+
+

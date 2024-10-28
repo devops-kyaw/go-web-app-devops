@@ -30,6 +30,8 @@ spec:
       serviceAccountName: {{ include "go-app-chart.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      imagePullSecrets:
+        - name: ecr-secret
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
