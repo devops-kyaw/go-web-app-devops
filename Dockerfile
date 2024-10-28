@@ -1,4 +1,4 @@
-# Containerize the go application that we have created
+# Containerize the go application that we have create
 # This is the Dockerfile that we will use to build the image
 # and run the container
 
