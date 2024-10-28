@@ -8,14 +8,20 @@ COPY go.mod ./
 
 RUN go mod download
 
-COPY * ./
+COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /go-web-app
+RUN go build -o main .
 
-FROM gcr.io/distroless/static-debian12	
+FROM gcr.io/distroless/base
 
-COPY --from=build /go-web-app /go-web-app
+# Copy the binary from the previous stage
+COPY --from=base /app/main .
 
+# Copy the static files from the previous stage
+COPY --from=base /app/static ./static
+
+# Expose the port on which the application will run
 EXPOSE 8080
 
-CMD ["/go-web-app"]              
+# Command to run the application
+CMD ["./main"]
