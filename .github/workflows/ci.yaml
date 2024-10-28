@@ -150,7 +150,7 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t 403922132857.dkr.ecr.us-east-1.amazonaws.com/go-web-app:${{ github.sha }} .
+          docker build -t 403922132857.dkr.ecr.us-east-1.amazonaws.com/go-web-app:${{ github.run_id }} .
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
