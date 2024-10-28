@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths-ignore:
-      - '/go-app-chart/**'
+      - 'go-app-chart/**'
   pull_request:
     branches:
       - main
