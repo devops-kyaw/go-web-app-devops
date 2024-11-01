@@ -3,7 +3,7 @@ name: Go CI Pipeline
 on:
   push:
     paths-ignore:
-      - 'go-app-chart/***'
+      - 'go-app-chart/**'
     branches:
       - main
   pull_request:
