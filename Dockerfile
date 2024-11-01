@@ -8,13 +8,15 @@ COPY go.mod ./
 
 RUN go mod download
 
-COPY * ./
+COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o /go-web-app
 
 FROM gcr.io/distroless/static-debian12	
 
-COPY --from=build /go-web-app /go-web-app
+COPY --from=build /go-web-app .
+
+COPY --from=build /app/static ./static
 
 EXPOSE 8080
 

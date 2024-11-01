@@ -5,12 +5,13 @@
 replicaCount: 1
 
 image:
-  repository: go-web-app
+  repository: 403922132857.dkr.ecr.us-east-1.amazonaws.com/go-web-app
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "2dfd4ab05bd05fa478bfb6056d39befcd34d7abf"
+  tag: "11554331875"
 
-imagePullSecrets: []
+imagePullSecrets: 
+   - name: regcred
 nameOverride: ""
 fullnameOverride: ""
 
@@ -42,6 +43,9 @@ securityContext: {}
 service:
   type: LoadBalancer
   port: 80
+  targetport: 8080
+
+
 
 ingress:
   enabled: false
@@ -105,3 +109,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+
+
